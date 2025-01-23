@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const NewDiscussion = () => {
     const [title, setTitle] = useState('');
@@ -23,98 +26,44 @@ const NewDiscussion = () => {
         navigate('/discussions');
     };
 
-    // Define styles
-    const styles = {
-        container: {
-            maxWidth: '600px',
-            margin: '50px auto',
-            padding: '20px',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-            backgroundColor: '#f9f9f9',
-        },
-        heading: {
-            textAlign: 'center',
-            color: '#333',
-            marginBottom: '20px',
-        },
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '15px',
-        },
-        label: {
-            fontWeight: 'bold',
-            color: '#555',
-        },
-        input: {
-            width: '100%',
-            padding: '10px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            fontSize: '16px',
-            backgroundColor: '#fff',
-        },
-        textarea: {
-            width: '100%',
-            padding: '10px',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            fontSize: '16px',
-            backgroundColor: '#fff',
-            resize: 'vertical',
-            minHeight: '100px',
-        },
-        button: {
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '4px',
-            backgroundColor: '#007bff',
-            color: '#fff',
-            fontSize: '16px',
-            cursor: 'pointer',
-            transition: 'background-color 0.3s ease',
-        },
-        buttonHover: {
-            backgroundColor: '#0056b3',
-        },
-    };
-
     return (
-        <div style={styles.container}>
-            <h1 style={styles.heading}>Post a New Discussion</h1>
-            <form onSubmit={handleSubmit} style={styles.form}>
-                <div>
-                    <label htmlFor="title" style={styles.label}>Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        style={styles.input}
-                    />
+        <div className="container my-5">
+            <h1 className="text-center mb-4">Post a New Discussion</h1>
+            <p className="text-center text-muted mb-4">Share your thoughts and engage with the community.</p>
+            <div className="card shadow-sm">
+                <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="title" className="form-label">Title:</label>
+                            <input
+                                type="text"
+                                id="title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="content" className="form-label">Content:</label>
+                            <textarea
+                                id="content"
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                required
+                                className="form-control"
+                                rows="5"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="btn btn-primary w-100"
+                        >
+                            Post Discussion
+                        </button>
+                    </form>
                 </div>
-                <div>
-                    <label htmlFor="content" style={styles.label}>Content:</label>
-                    <textarea
-                        id="content"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        required
-                        style={styles.textarea}
-                    />
-                </div>
-                <button
-                    type="submit"
-                    style={styles.button}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-                >
-                    Post Discussion
-                </button>
-            </form>
+            </div>
         </div>
     );
 };
