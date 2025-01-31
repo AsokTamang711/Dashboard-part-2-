@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import Navbar from "../component/Navbar"
 
 const Discussions = () => {
     const [discussions, setDiscussions] = useState([]);
@@ -36,6 +37,8 @@ const Discussions = () => {
     };
 
     return (
+        <>
+        <Navbar/>
         <div className="container my-5">
             <h1 className="text-center mb-4">Discussions</h1>
             <Link
@@ -75,6 +78,8 @@ const Discussions = () => {
                 ))}
             </div>
         </div>
+        
+        </>
     );
 };
 
